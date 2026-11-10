@@ -11,6 +11,8 @@ La propuesta completa está en [docs/Madrevieja_proyecto_final_Icesi.pdf](docs/M
 3. La primera vez el navegador pide permiso para usar las cámaras: acepta.
 4. Para salir: **Alt+F4**.
 
+**Para capturar o probar en casa:** `iniciar-ventana.bat` abre lo mismo en una ventana normal, con el mismo perfil y los mismos datos. Si ya hay una ventana de Madrevieja abierta (en cualquiera de los dos modos), ciérrala antes: Chrome reutiliza la que está abierta con su modo.
+
 No hay que instalar nada: el servidor es PowerShell, que ya viene en Windows. Si el computador no tiene Chrome, usa Edge.
 
 > Abre la instalación **siempre** con `iniciar.bat`. Los datos de entrenamiento y el estado del paisaje se guardan en un perfil propio del navegador (`%LOCALAPPDATA%\Madrevieja\navegador`). Si la abres de otra forma, aparece vacía (los datos no se pierden, solo se ven en ese perfil).

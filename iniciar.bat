@@ -1,7 +1,16 @@
 @echo off
 rem Madrevieja: enciende el servidor local y abre la instalacion en pantalla completa.
 rem Para salir de la pantalla completa: Alt+F4.
+rem "iniciar.bat ventana" (o iniciar-ventana.bat) la abre en una ventana normal,
+rem con el mismo perfil y los mismos datos.
 cd /d "%~dp0"
+
+set MODO_CHROME=--kiosk
+set MODO_EDGE=--kiosk --edge-kiosk-type=fullscreen
+if /i "%~1"=="ventana" (
+  set MODO_CHROME=--new-window
+  set MODO_EDGE=--new-window
+)
 
 set PUERTO=8765
 set URL=http://localhost:%PUERTO%/
@@ -17,7 +26,7 @@ if exist "%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe" set CHROME=%
 if exist "%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe" set CHROME=%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe
 
 if defined CHROME (
-  start "" "%CHROME%" --user-data-dir="%PERFIL%" --kiosk --no-first-run --disable-features=Translate --autoplay-policy=no-user-gesture-required %URL%
+  start "" "%CHROME%" --user-data-dir="%PERFIL%" %MODO_CHROME% --no-first-run --disable-features=Translate --autoplay-policy=no-user-gesture-required %URL%
 ) else (
-  start "" msedge --user-data-dir="%PERFIL%" --kiosk %URL% --edge-kiosk-type=fullscreen --no-first-run
+  start "" msedge --user-data-dir="%PERFIL%" %MODO_EDGE% --no-first-run %URL%
 )
