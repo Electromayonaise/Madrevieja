@@ -8,24 +8,32 @@ Nada de esto requiere programar. Lo técnico ya está hecho; lo que falta es lo 
 
 El reconocimiento aprende de ejemplos. Los que se toman **en el lugar real, con su luz y su fondo**, valen mucho más que los de la casa. Esto es lo que más ayuda a que funcione el día de la exposición.
 
+**Antes, en la casa (5 minutos, una sola vez):**
+1. Entra a https://github.com/Electromayonaise/Madrevieja → botón verde **Code** → **Download ZIP**. No hace falta tener cuenta.
+2. En la carpeta Descargas: clic derecho sobre el ZIP → **Extraer todo**. Hay que extraerlo; desde dentro del ZIP no funciona.
+3. Abre la carpeta extraída y haz doble clic en **`iniciar-ventana.bat`**. Si Windows dice «Windows protegió su PC»: **Más información → Ejecutar de todas formas**.
+4. Se abre una ventana negra minimizada (no la cierres) y Chrome con la instalación. Si se ve el paisaje, ya está.
+
+No hay que instalar nada (ni Python ni otro programa). Solo se necesita Windows y Chrome o Edge. Con un Mac no funciona tal cual: avisen antes.
+
 **Qué llevar:**
-- Un portátil con Windows (cualquiera) con la carpeta `Madrevieja` copiada.
+- Un portátil con Windows (cualquiera) con la carpeta `Madrevieja` extraída.
 - La webcam Logitech, o la que se vaya a usar ese día.
 - Los residuos reales: varias botellas plásticas, vasos de café, paquetes de papas o galletas, servilletas usadas, cáscaras o restos de comida, latas de gaseosa. Si se puede, de marcas y tamaños distintos: llenos, vacíos, aplastados.
 - Otros objetos que la gente tendrá en la mano: celular, llaves, billetera, cuaderno.
 
 **Paso a paso (unos 30–40 minutos):**
 1. Pon la cámara **en el sitio y a la altura donde va a estar** el día de la exposición.
-2. Doble clic en `iniciar.bat`. Acepta el permiso de cámara.
+2. Doble clic en `iniciar-ventana.bat`. Acepta el permiso de cámara.
 3. Pulsa la tecla **A** → pestaña **Entrenamiento**.
 4. En «Sesión» escribe `sitio-karen` o `sitio-manuela`.
 5. Para cada residuo: **mantén presionado** su botón (o la tecla de su número) mientras lo mueves despacio frente a la cámara: gíralo, acércalo, aléjalo, cámbialo de mano. Suelta cuando el número llegue a **120** (se pone verde).
 6. **Otro objeto (7):** celulares, llaves, billeteras, manos vacías. 120 también.
 7. **Fondo vacío (8):** la mesa sin nada, con gente pasando detrás, con la luz como esté. 120 también.
 8. Mira el recuadro de la izquierda: con cada residuo en la mano debe decir el nombre correcto. Si confunde dos, captura más de esos dos.
-9. Pulsa **«Exportar solo «sitio-…»»**. Se descarga un archivo `.json`.
+9. Pulsa **«Exportar solo «sitio-…»»**. Se descarga un archivo `.json` en la carpeta Descargas.
 10. Manda ese archivo (WhatsApp, correo o Drive). Son solo números, no fotos.
-11. Pulsa **Esc** y **Alt+F4** para cerrar.
+11. Cierra Chrome y la ventana negra.
 
 **Consejos:**
 - Varias personas sosteniendo los objetos es mejor que una sola: manos distintas, mangas distintas.
