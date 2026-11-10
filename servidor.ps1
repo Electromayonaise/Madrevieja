@@ -34,6 +34,21 @@ while ($oyente.IsListening) {
   try {
     $ruta = [Uri]::UnescapeDataString($c.Request.Url.AbsolutePath).TrimStart('/')
     if ($ruta -eq '') { $ruta = 'index.html' }
+    if ($ruta -eq 'data/lista') {
+      # Lista de archivos de entrenamiento que la pagina importa al arrancar.
+      $carpeta = Join-Path $raiz 'data'
+      $lista = @()
+      if (Test-Path $carpeta) {
+        $lista = @(Get-ChildItem $carpeta -Filter *.json -File | ForEach-Object { @{ nombre = $_.Name; tam = $_.Length } })
+      }
+      $json = if ($lista.Count) { ConvertTo-Json -InputObject $lista -Compress } else { '[]' }
+      $bytes = [Text.Encoding]::UTF8.GetBytes($json)
+      $res.ContentType = 'application/json'
+      $res.Headers.Add('Cache-Control', 'no-cache')
+      $res.ContentLength64 = $bytes.Length
+      $res.OutputStream.Write($bytes, 0, $bytes.Length)
+      continue
+    }
     $archivo = [IO.Path]::GetFullPath((Join-Path $raiz $ruta))
     if (-not $archivo.StartsWith($raiz) -or -not (Test-Path $archivo -PathType Leaf)) {
       $res.StatusCode = 404

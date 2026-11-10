@@ -228,3 +228,61 @@ export function importarDatos(texto, dim) {
 export function firma(m) {
   return aBase64(m.vec.subarray(0, 8));
 }
+
+// Añade muestras importadas, saltando las que ya están (misma firma).
+export async function incorporar(clasificador, almacen, muestras) {
+  const vistas = new Set(clasificador.muestras.map(firma));
+  const agregar = [];
+  for (const m of muestras) {
+    const k = firma(m);
+    if (vistas.has(k)) continue;
+    vistas.add(k);
+    agregar.push(m);
+  }
+  await almacen?.guardar(agregar);
+  agregar.forEach((m) => clasificador.agregar(m));
+  return { nuevas: agregar.length, repetidas: muestras.length - agregar.length };
+}
+
+// Al arrancar: importa los .json de la carpeta data/ que este navegador aún
+// no haya importado. Cada archivo se importa una sola vez, así que si luego
+// se borran muestras desde el panel no vuelven a aparecer solas.
+const CLAVE_IMPORTADOS = 'madrevieja.importados';
+
+export async function importarCarpetaData(clasificador, almacen) {
+  let lista;
+  try {
+    const r = await fetch('data/lista', { cache: 'no-store' });
+    if (!r.ok) return null;
+    lista = await r.json();
+  } catch {
+    return null;
+  }
+  let hechos;
+  try {
+    hechos = new Set(JSON.parse(localStorage.getItem(CLAVE_IMPORTADOS) || '[]'));
+  } catch {
+    hechos = new Set();
+  }
+  const resumen = { archivos: 0, nuevas: 0, repetidas: 0, errores: [] };
+  for (const { nombre, tam } of lista) {
+    const clave = `${nombre}|${tam}`;
+    if (hechos.has(clave)) continue;
+    try {
+      const texto = await (await fetch('data/' + encodeURIComponent(nombre), { cache: 'no-store' })).text();
+      const r = await incorporar(clasificador, almacen, importarDatos(texto, clasificador.dim));
+      resumen.archivos++;
+      resumen.nuevas += r.nuevas;
+      resumen.repetidas += r.repetidas;
+      hechos.add(clave);
+    } catch (e) {
+      resumen.errores.push(`${nombre}: ${e.message}`);
+    }
+  }
+  try {
+    localStorage.setItem(CLAVE_IMPORTADOS, JSON.stringify([...hechos]));
+  } catch {
+    /* sin localStorage: se reimporta la próxima vez, sin duplicar */
+  }
+  return resumen;
+}

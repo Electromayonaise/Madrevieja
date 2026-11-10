@@ -4,7 +4,7 @@
 import { ANCHO as W, ALTO as H, RESIDUOS } from './config.js';
 import { ajustes, guardarAjustes } from './ajustes.js';
 import { listarCamaras, sugerirAsignacion, resolver, abrirCamara, cerrarCamara, camaraLista } from './camaras.js';
-import { Extractor, Clasificador, Almacen } from './modelo.js';
+import { Extractor, Clasificador, Almacen, importarCarpetaData } from './modelo.js';
 import { DetectorCanecas } from './deteccion.js';
 import { Memoria } from './memoria.js';
 import { Experiencia } from './experiencia.js';
@@ -370,6 +370,8 @@ async function iniciar() {
       app.clasificador = new Clasificador(extractor.dim);
       app.clasificador.reemplazar(muestras);
     }
+    const r = await importarCarpetaData(app.clasificador, app.almacen);
+    if (r && (r.archivos || r.errores.length)) console.info('Carpeta data/', r);
     app.extractorListo = true;
     if (panel.abierto) panel.render();
   } catch (e) {

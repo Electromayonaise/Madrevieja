@@ -53,7 +53,9 @@ espera ──(ve un residuo estable)──► guía: «va en la BLANCA» ──(
 4. No olvides **Fondo vacío** (8) y **Otro objeto** (7): son los que evitan que confunda la mesa o un celular con un residuo.
 5. Mira la predicción en vivo a la izquierda. Si confunde dos clases, captura más de las dos justo en esas posiciones.
 
-**Juntar los datos de varias personas:** cada quien pulsa *Exportar solo «su sesión»* y manda el `.json` (WhatsApp, correo, USB). En el computador de la exposición: *Importar archivo(s)*. Las muestras repetidas se ignoran, así que se puede importar dos veces sin problema. Los archivos son solo números, no fotos.
+**Juntar los datos de varias personas:** cada quien pulsa *Exportar solo «su sesión»* y manda el `.json` (WhatsApp, correo, USB). Lo más fácil es **ponerlo en la carpeta `data/`**: al arrancar, la instalación importa sola cada `.json` de ahí que no haya importado antes. También se puede a mano con *Importar archivo(s)*. Las muestras repetidas se ignoran, así que importar dos veces no duplica nada. Los archivos son solo números, no fotos.
+
+Cada archivo de `data/` se importa una sola vez por computador. Si después borras muestras desde el panel, no vuelven a aparecer al reiniciar. Si cambias un archivo (otro tamaño), se vuelve a leer y solo entra lo nuevo.
 
 Los datos capturados en el sitio real valen más que los de la casa (misma luz, mismo fondo). Si el día de la exposición el reconocimiento falla, 10 minutos de captura en el sitio (sesión `sitio`) suelen bastar.
 
@@ -88,7 +90,7 @@ El paisaje se dibuja solo, por código. Si se ponen tres imágenes en `assets/il
 | La cámara 2 falla del todo | Panel → *Cámaras* → cámara 2: *Ninguna*. Modo guiado, sigue funcionando. |
 | «No se pudo abrir el puerto 8765» | Ya hay una ventana del servidor abierta. Ciérrala o usa esa. |
 | Empezar el paisaje de cero | *Registro* → *Reiniciar madrevieja*. |
-| Pasar todo a otro computador | Copia la carpeta, exporta el entrenamiento (*Exportar todo*) e impórtalo allá. |
+| Pasar todo a otro computador | *Exportar todo*, pon el `.json` en `data/` y copia la carpeta entera. Allá se importa solo al abrir. |
 
 ## Registro
 
@@ -111,6 +113,7 @@ src/paisaje.js        paisaje dibujado por código
 src/ui.js             tarjetas y textos sobre el paisaje
 src/panel.js          panel de control
 vendor/               TensorFlow.js y MobileNet (funciona sin internet)
+data/                 entrenamiento exportado (.json), se importa solo al arrancar
 ```
 
 Los textos se cambian en `src/config.js`, sin tocar lo demás.

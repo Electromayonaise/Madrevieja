@@ -2,7 +2,7 @@
 // Mientras está abierto, la experiencia del público queda en pausa.
 
 import { CANECAS, ORDEN_CANECAS, RESIDUOS, CLASES_EXTRA, AJUSTES_BASE } from './config.js';
-import { exportarDatos, importarDatos, firma } from './modelo.js';
+import { exportarDatos, importarDatos, incorporar } from './modelo.js';
 
 // Teclas para capturar: 1–6 residuos, 7 otro objeto, 8 fondo vacío.
 const CLASES = [
@@ -295,26 +295,14 @@ export class Panel {
 
   async importar(archivos) {
     const app = this.app;
-    const vistas = new Set(app.clasificador.muestras.map(firma));
     let nuevas = 0;
     let repetidas = 0;
     const errores = [];
     for (const f of archivos) {
       try {
-        const muestras = importarDatos(await f.text(), app.clasificador.dim);
-        const agregar = [];
-        for (const m of muestras) {
-          const k = firma(m);
-          if (vistas.has(k)) {
-            repetidas++;
-            continue;
-          }
-          vistas.add(k);
-          agregar.push(m);
-        }
-        await app.almacen.guardar(agregar);
-        agregar.forEach((m) => app.clasificador.agregar(m));
-        nuevas += agregar.length;
+        const r = await incorporar(app.clasificador, app.almacen, importarDatos(await f.text(), app.clasificador.dim));
+        nuevas += r.nuevas;
+        repetidas += r.repetidas;
       } catch (e) {
         errores.push(`${f.name}: ${e.message}`);
       }
