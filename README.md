@@ -47,7 +47,7 @@ espera ──(ve un residuo estable)──► guía: «va en la BLANCA» ──(
 
 ## Entrenar el reconocimiento (pestaña Entrenamiento)
 
-1. Escribe el nombre de la **sesión** (`casa`, `sitio`…). Sirve para saber de dónde vino cada muestra.
+1. Escribe el nombre de la **sesión**: `casa` (en la casa) o `icesi` (en el sitio). Sirve para saber de dónde vino cada muestra. El número grande de cada fila es el total y el pequeño («120 en «icesi»») cuenta solo los de la sesión escrita.
 2. Mantén presionado el botón de la clase (o la tecla del número) mientras mueves el objeto frente a la cámara: ~9 muestras por segundo.
 3. Meta: **~120 muestras por clase en cada lugar**. El número se pone verde cuando llega.
 4. No olvides **Fondo vacío** (8) y **Otro objeto** (7): son los que evitan que confunda la mesa o un celular con un residuo.
@@ -57,7 +57,7 @@ espera ──(ve un residuo estable)──► guía: «va en la BLANCA» ──(
 
 Cada archivo de `data/` se importa una sola vez por computador. Si después borras muestras desde el panel, no vuelven a aparecer al reiniciar. Si cambias un archivo (otro tamaño), se vuelve a leer y solo entra lo nuevo.
 
-Los datos capturados en el sitio real valen más que los de la casa (misma luz, mismo fondo). Si el día de la exposición el reconocimiento falla, 10 minutos de captura en el sitio (sesión `sitio`) suelen bastar.
+Los datos capturados en el sitio real valen más que los de la casa (misma luz, mismo fondo). Si el día de la exposición el reconocimiento falla, 10 minutos de captura en el sitio (sesión `icesi`) suelen bastar.
 
 ## Cámara 2 y las canecas (pestaña Canecas)
 

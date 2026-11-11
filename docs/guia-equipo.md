@@ -26,12 +26,13 @@ No hay que instalar nada (ni Python ni otro programa). Solo se necesita Windows 
 1. Pon la cámara **en el sitio y a la altura donde va a estar** el día de la exposición.
 2. Doble clic en `iniciar-ventana.bat`. Acepta el permiso de cámara.
 3. Pulsa la tecla **A** → pestaña **Entrenamiento**.
-4. En «Sesión» escribe `sitio-karen` o `sitio-manuela`.
+4. En «Sesión» (arriba) borra `casa` y escribe **`icesi`**. Ese nombre dice dónde se tomaron las muestras. Los números pequeños de cada fila («0 en «icesi»») cuentan solo las de esta sesión: empiezan en 0 y en rojo, y se ponen verdes al llegar a 120.
+   - Si alguna vez capturan en su casa, no usen `casa` (ese nombre ya trae los datos de prueba y el contador saldría lleno): escriban `casa-karen` o `casa-manuela`.
 5. Para cada residuo: **mantén presionado** su botón (o la tecla de su número) mientras lo mueves despacio frente a la cámara: gíralo, acércalo, aléjalo, cámbialo de mano. Suelta cuando el número llegue a **120** (se pone verde).
 6. **Otro objeto (7):** celulares, llaves, billeteras, manos vacías. 120 también.
 7. **Fondo vacío (8):** la mesa sin nada, con gente pasando detrás, con la luz como esté. 120 también.
 8. Mira el recuadro de la izquierda: con cada residuo en la mano debe decir el nombre correcto. Si confunde dos, captura más de esos dos.
-9. Pulsa **«Exportar solo «sitio-…»»**. Se descarga un archivo `.json` en la carpeta Descargas.
+9. Pulsa **«Exportar solo «icesi»»**. Se descarga un archivo `.json` en la carpeta Descargas.
 10. Manda ese archivo (WhatsApp, correo o Drive). Son solo números, no fotos.
 11. Cierra Chrome y la ventana negra.
 
